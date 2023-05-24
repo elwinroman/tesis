@@ -1,0 +1,67 @@
+% ///////////////////////////////////////////////////// %
+% ///// Configuración de títulos, subtítulos, etc ///// %
+% ///////////////////////////////////////////////////// %
+
+% Renombra chaptername al español
+\renewcommand{\chaptername}{Capítulo}
+
+% Numeración de los capitulos en número romano
+\renewcommand{\thechapter}{\arabic{chapter}} 
+
+% Formato para los capítulos numerados
+\titleformat{\chapter}[display] % forma del título
+  {\normalfont\LARGE\bfseries\centering} % formato del título
+  {\chaptername\ \thechapter}   % texto antes del título (label)
+  {10pt}                        % separación entre label y titulo
+  {}                            % no before-code
+
+% Formato para los capítulos no numerados
+\titleformat{name=\chapter, numberless}[block]
+  {\normalfont\LARGE\bfseries\centering}
+  {}     % no label
+  {0pt}  % no sep
+  {}     % no before-code
+  
+% Define el espacio alrededor del título de un capítulo
+\titlespacing*{\chapter}
+  {0pt}   % margen a la izquierda
+  {*-5.5} % espacio vertical antes del título (ref#01)
+  {30pt}  % espacio vertical después del título (ref#02)
+
+% Define el espacio vertical antes del título 
+\newcommand{\addBeforeTitleSpace}[1]{
+  \titlespacing*{\chapter}{0pt}{#1}{30pt}
+}
+
+% Resetea el espacio vertical antes del título 
+\newcommand{\resetBeforeTitleSpace}{
+  \titlespacing*{\chapter}{0pt}{*-5.5}{30pt}
+}
+
+% Crea un entorno para los ANEXOS
+\newenvironment{anexos}{
+  \begin{appendices}
+    % Renombra el chaptername para los anexos
+    \renewcommand{\chaptername}{Anexo}
+
+    % Cambia la etiqueta de los anexos en el índice
+    \renewcommand{\appendixname}{Anexo}
+
+    % Formato para los anexos
+    \titleformat{\chapter}[block]     % forma del título
+      {\normalfont\LARGE\bfseries\centering} % formato del título
+      {\chaptername\ \thechapter: }   % texto antes del título (label)
+      {0pt}                           % no sep
+      {}                              % no before-code
+}{
+  \end{appendices}
+}
+
+% Crea un entorno para las referencias bibliograficas
+\newenvironment{myreferences}[1]{
+  \nocite{*} % muestra todas las referencias sin necesidad de citar explicitamente
+  
+  % Renombra el titulo de la bibliogrfía
+  \renewcommand{\bibname}{#1}
+  \bibliographystyle{apacite}
+}{}

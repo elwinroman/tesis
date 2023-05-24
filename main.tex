@@ -1,0 +1,103 @@
+\documentclass[a4paper, 12pt, oneside]{book}
+\usepackage[showframe]{geometry} % DEV TOOL
+\usepackage{geometry}
+\geometry{left=3cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[titletoc]{appendix}
+\usepackage[nosectionbib]{apacite}
+
+\input{config/indexes.tex}
+\input{config/pagenumber.tex}
+\input{config/titles.tex}
+\input{config/paragraphs.tex}
+
+% Entorno para la portada
+\newenvironment{module.coverpage}{ % portada
+  \vspace*{1pt} % espacio vertical antes del contenido
+  \begin{center}
+}{
+  \thispagestyle{empty} % oculta la numeración de página
+  \end{center}
+}
+\newenvironment{module}[1]{ % capítulo sin numeración
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
+}{
+  \newpage
+}
+
+% Metadatos
+\title{Thesis project}
+\author{Elwin Roman}
+\date{\today}
+
+\begin{document}\begin{onehalfspace}
+  
+  \pagenumbering{roman}
+
+  \begin{module.coverpage}
+  \end{module.coverpage}
+
+  % \addtocontents{toc}{\protect\cftpagenumbersoff{chapter}}
+
+  \begin{module}{Agradecimientos}
+  \end{module}
+
+  \begin{module}{Dedicatoria}
+  \end{module}
+
+  \begin{module.index}{Índice general}
+    {\tableofcontents}{\contentsname}
+  \end{module.index}
+
+  \begin{module.index}{Índice de figuras}
+    {\listoffigures}{\listfigurename}
+  \end{module.index}
+
+  \begin{module.index}{Índice de tablas}
+    {\listoftables}{\listtablename}
+  \end{module.index}
+
+  \begin{module}{Índice de acrónimos}
+  \end{module}  
+
+  \begin{module}{Abstract}
+  \end{module}
+
+  \begin{module}{Resumen}
+  \end{module}
+  
+  \addBeforeTitleSpace{50pt}
+  
+  % \addtocontents{toc}{\protect\cftpagenumberson{chapter}}
+  
+  \pagenumbering{arabic} % inicia nueva numeración de página
+  
+  \chapter{Introducción}
+
+  \chapter{Revisión de literatura}
+
+  \chapter{Materiales y métodos}
+
+  \chapter{Resultados y discusión}
+
+  \chapter{Conclusiones y recomendaciones}
+
+  \resetBeforeTitleSpace
+  \begin{myreferences}{Referencias bibliográficas}
+    % Agrega las referencias desde un archivo .bib, aparentemente funciona solo con rutas absolutas
+    \bibliography{e:/proyectos/tesis/refs}
+  \end{myreferences}
+
+  \begin{anexos}
+    \chapter{Ejemplo de anexo}
+
+    \chapter{Otro ejemplo de anexo}
+
+  \end{anexos}
+\end{onehalfspace}\end{document} % This is the end of the document

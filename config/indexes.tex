@@ -1,0 +1,39 @@
+% ///////////////////////////////////////////////// %
+% ///////// Configuración del índice ////////////// %
+% ///////// lista de figuras y tablas ///////////// %
+% ///////////////////////////////////////////////// %
+
+% Generador de índice automático para el índice
+% ...general, lista de figuras y lista de tablas
+  % [arg 1] nombre del índice en español
+  % [arg 2] tipo de índice
+  % [arg 3] variable que contiene el nombre de GIA
+  \newenvironment{module.index}[3]{
+    \clearpage      % asegura el comienzo de una nueva página
+    \renewcommand{#3}
+      {\LARGE\begin{center} #1 \end{center}} % modifica el nombre por defecto
+    \begin{singlespace}
+    #2
+    \addcontentsline{toc}{chapter}{#1}
+  }{
+    \end{singlespace}
+  }
+  
+  % Espacio vertical antes del título de los índices
+  \setlength{\cftbeforetoctitleskip}{-20pt} % índice general (ref#01)
+  \setlength{\cftbeforeloftitleskip}{-20pt} % lista de figuras (ref#01)
+  \setlength{\cftbeforelottitleskip}{-20pt} % lista de tablas (ref#01)
+  % Espacio vertical después del titulo de los índices
+  \setlength{\cftaftertoctitleskip}{30pt} % índice general (ref#02)
+  \setlength{\cftafterloftitleskip}{30pt} % lista de figuras (ref#02)
+  \setlength{\cftafterlottitleskip}{30pt} % lista de tablas (ref#02)
+  
+  % Longitud de espaciado (default 4.5)
+  \renewcommand{\cftdotsep}{4.5}
+  
+  % Tipo de espaciado (punto y/o linea)
+  \renewcommand{\cftdot}{.}
+  
+  % Inserta la separación en los capítulos
+  \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+  
