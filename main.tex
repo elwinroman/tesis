@@ -9,16 +9,19 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage[titletoc]{appendix}
-\usepackage[nosectionbib]{apacite}
+\usepackage[style=apa]{biblatex}
 \usepackage[bottom]{footmisc}
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{csquotes}
+\usepackage[spanish]{babel}
 
 \input{config/indexes.tex}
 \input{config/pagenumber.tex}
 \input{config/titles.tex}
 \input{config/paragraphs.tex}
+\input{config/bibliography.tex}
 
 % Entorno para la portada
 \newenvironment{module.coverpage}{ % portada
@@ -95,10 +98,8 @@
   \chapter{Conclusiones y recomendaciones}
 
   \resetBeforeTitleSpace
-  \begin{myreferences}{Referencias bibliográficas}
-    % Agrega las referencias desde un archivo .bib, aparentemente funciona solo con rutas absolutas
-    \bibliography{e:/proyectos/tesis/refs}
-  \end{myreferences}
+
+  \printbibliography
 
   \begin{anexos}
     \chapter{Ejemplo de anexo}

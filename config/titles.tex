@@ -2,9 +2,6 @@
 % ///// Configuración de títulos, subtítulos, etc ///// %
 % ///////////////////////////////////////////////////// %
 
-% Renombra chaptername al español
-\renewcommand{\chaptername}{Capítulo}
-
 % Numeración de los capitulos en número romano
 \renewcommand{\thechapter}{\arabic{chapter}} 
 
@@ -56,12 +53,3 @@
 }{
   \end{appendices}
 }
-
-% Crea un entorno para las referencias bibliograficas
-\newenvironment{myreferences}[1]{
-  \nocite{*} % muestra todas las referencias sin necesidad de citar explicitamente
-  
-  % Renombra el titulo de la bibliogrfía
-  \renewcommand{\bibname}{#1}
-  \bibliographystyle{apacite}
-}{}
