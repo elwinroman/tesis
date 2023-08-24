@@ -9,7 +9,7 @@
 \titleformat{\chapter}[display] % forma del título
   {\normalfont\LARGE\bfseries\centering} % formato del título
   {\chaptername\ \thechapter}   % texto antes del título (label)
-  {10pt}                        % separación entre label y titulo
+  {0pt}                         % separación entre label y titulo
   {}                            % no before-code
 
 % Formato para los capítulos no numerados
@@ -22,18 +22,13 @@
 % Define el espacio alrededor del título de un capítulo
 \titlespacing*{\chapter}
   {0pt}   % margen a la izquierda
-  {*-5.5} % espacio vertical antes del título (ref#01)
-  {30pt}  % espacio vertical después del título (ref#02)
+  {-38.5pt} % espacio vertical antes del título (ref#01)
+  {15pt}   % espacio vertical después del título (ref#02)
 
-% Define el espacio vertical antes del título 
-\newcommand{\addBeforeTitleSpace}[1]{
-  \titlespacing*{\chapter}{0pt}{#1}{30pt}
-}
-
-% Resetea el espacio vertical antes del título 
-\newcommand{\resetBeforeTitleSpace}{
-  \titlespacing*{\chapter}{0pt}{*-5.5}{30pt}
-}
+% Define el espacio después de los títulos y subtítulos
+\titlespacing{\section}{0pt}{20pt}{4pt}
+\titlespacing{\subsection}{0pt}{16pt}{4pt}
+\titlespacing{\subsubsection}{0pt}{12pt}{4pt}
 
 % Crea un entorno para los ANEXOS
 \newenvironment{anexos}{
