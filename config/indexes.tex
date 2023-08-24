@@ -50,28 +50,8 @@
 % Numeración continua de las figuras
 \counterwithout{figure}{chapter}
 
-% Nueva funcionalidad de leyenda para las figuraas
-  % [arg 1 : optional] descripción corta
-  % [arg 2]            descripción larga
-  % [arg 3]            fuente
-\newcommand{\captionsource}[3]{
-  \def\shortcaption{#1}
-  \def\captiontext{#2}
-  \ifdefempty{\shortcaption}{
-    \caption[#2]{#2}
-  }{
-    \caption[#1]{#2}
-  }
-  \vspace{-10pt}
-  % \caption*{\textbf{Fuente:} #3}
-  \caption*{Fuente: #3}
 }
 % Cambia el nombre de Figure a Figura en el índice de figuras
 \renewcommand{\cftfigpresnum}{Figura }
 
-% Establece el ancho necesario de tabulación
-\settowidth{\cftfignumwidth}{Figura 99\:}
 
-% Agrega el signo de dos puntos después del número de figura
-\renewcommand{\cftfigaftersnum}{:}
-  
