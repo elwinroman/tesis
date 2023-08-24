@@ -10,23 +10,21 @@
   % [arg 3] variable que contiene el nombre de GIA
   \newenvironment{module.index}[3]{
     \clearpage      % asegura el comienzo de una nueva página
-    \renewcommand{#3}
-      {\LARGE\begin{center} #1 \end{center}} % modifica el nombre por defecto
-    \begin{singlespace}
-    #2
+    \renewcommand{#3}{\LARGE\begin{center} #1 \end{center}} % modifica el nombre por defecto
+    { \renewcommand*{\addvspace}[1]{}   % eliminar espacio entre saltos de capítulo en LOT y LOF
+      #2
+    }
     \addcontentsline{toc}{chapter}{#1}
-  }{
-    \end{singlespace}
   }
   
-  % Espacio vertical antes del título de los índices
-  \setlength{\cftbeforetoctitleskip}{-20pt} % índice general (ref#01)
-  \setlength{\cftbeforeloftitleskip}{-20pt} % lista de figuras (ref#01)
-  \setlength{\cftbeforelottitleskip}{-20pt} % lista de tablas (ref#01)
-  % Espacio vertical después del titulo de los índices
-  \setlength{\cftaftertoctitleskip}{30pt} % índice general (ref#02)
-  \setlength{\cftafterloftitleskip}{30pt} % lista de figuras (ref#02)
-  \setlength{\cftafterlottitleskip}{30pt} % lista de tablas (ref#02)
+% Espacio vertical antes del título de los índices
+\setlength{\cftbeforetoctitleskip}{-38.5pt} % índice general (ref#01)
+\setlength{\cftbeforeloftitleskip}{-38.5pt} % lista de figuras (ref#01)
+\setlength{\cftbeforelottitleskip}{-38.5pt} % lista de tablas (ref#01)
+% Espacio vertical después del titulo de los índices
+\setlength{\cftaftertoctitleskip}{15pt} % índice general (ref#02)
+\setlength{\cftafterloftitleskip}{15pt} % lista de figuras (ref#02)
+\setlength{\cftafterlottitleskip}{15pt} % lista de tablas (ref#02)
   
   % Longitud de espaciado (default 4.5)
   \renewcommand{\cftdotsep}{4.5}
@@ -37,6 +35,28 @@
   % Inserta la separación en los capítulos
   \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
+% Espaciado general en la lista de índice, figuras y tablas
+\addtocontents{toc}{\protect\setstretch{1.5}}
+\addtocontents{lof}{\protect\setstretch{1.5}}
+\addtocontents{lot}{\protect\setstretch{1.5}}
+
+% Espaciado entre las líneas de los capítulos (chapters) en TOC
+\setlength{\cftbeforechapskip}{1pt}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+
+\setlength{\cftbeforefigskip}{0pt}
+\setlength{\cftbeforetabskip}{0pt}
+
+\captionsetup{
+  labelfont=bf,          % label bold
+  labelsep=newline,      % separación entre la numeración y el título
+  singlelinecheck=false, % asegura que se aplique a títulos de varias líneas
+  textfont=it,           % cursiva para el título
+  justification=raggedright,
+  skip=5pt              % espacio vertical entre el caption y la figura/tabla
+}
+
 % ///////////////////////////////////////////////// %
 % ///////// Configuración de figuras ////////////// %
 % ///////////////////////////////////////////////// %
@@ -44,14 +64,42 @@
 % Renombra Figure a Figura
 \renewcommand{\figurename}{Figura}
 
-% Establece en negrita el número de etiqueta de una figura
-% \captionsetup{labelfont=bf}
+\counterwithout{figure}{chapter} % Desvincula el contador de figuras del contador de capítulo
+\counterwithout{table}{chapter}  % Desvincula el contador de tablas del contador de capítulo
 
-% Numeración continua de las figuras
-\counterwithout{figure}{chapter}
-
+%% "Notes" para el caption de tablas y figuras
+ % [arg 1] anchura de la nota
+ % [arg 2] texto de la nota
+\newenvironment{mynotecaption}[1]{
+  \newline
+  \begin{minipage}{#1}
+    \vskip 5pt
+    \small\onehalfspacing
+}{
+  \end{minipage}
 }
-% Cambia el nombre de Figure a Figura en el índice de figuras
+
+% Define el antecesor de la numeración del índice de figuras
 \renewcommand{\cftfigpresnum}{Figura }
 
+% Agrega un signo después de la numeración
+% \renewcommand{\cftfigaftersnum}{.}
 
+% Identación para índice de figuras
+\cftsetindents{fig}{0pt}{53pt}
+
+% ///////////////////////////////////////////////// %
+% ////////// Configuración de tablas ////////////// %
+% ///////////////////////////////////////////////// %
+
+% Spanish name
+\renewcommand{\tablename}{Tabla}
+
+% Define el antecesor de la numeración del índice de tablas
+\renewcommand{\cfttabpresnum}{Tabla }
+
+% Agrega un signo después de la numeración
+% \renewcommand{\cfttabaftersnum}{.}
+
+% Identación para el índice de tablas
+\cftsetindents{tab}{0pt}{48pt}
